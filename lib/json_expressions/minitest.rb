@@ -17,3 +17,5 @@ end
 
 Object.infect_an_assertion :assert_json_match, :must_match_json_expression
 Object.infect_an_assertion :refute_json_match, :wont_match_json_expression
+Object.infect_an_assertion :assert_json_include, :must_include_json_expression
+Object.infect_an_assertion :refute_json_include, :wont_include_json_expression

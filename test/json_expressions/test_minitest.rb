@@ -128,4 +128,40 @@ describe MiniTest::Spec do
     @non_matching_json_string.wont_match_json_expression @pattern
     assert_raises(::MiniTest::Assertion) { @matching_json.wont_match_json_expression @pattern }
   end
+
+  describe '#must_include_json_expression' do
+    before do
+      @pattern = {
+        l1_string:   'Hello world!',
+      }
+      @non_matching_json[:l1_string] = "Oops!"
+    end
+    it 'should pass when the json matches the pattern' do
+      @matching_json.must_include_json_expression @pattern
+    end
+
+    it 'should raise an exception when the json does not match the pattern' do
+      assert_raises(::MiniTest::Assertion) do
+        @non_matching_json.must_include_json_expression @pattern
+      end
+    end
+  end
+
+  describe '#wont_include_json_expression' do
+    before do
+      @pattern = {
+        l1_string:   'Hello world!',
+      }
+      @non_matching_json[:l1_string] = "Oops!"
+    end
+    it 'should pass when the json matches the pattern' do
+      @non_matching_json.wont_include_json_expression @pattern
+    end
+
+    it 'should raise an exception when the json does not match the pattern' do
+      assert_raises(::MiniTest::Assertion) do
+        @matching_json.wont_include_json_expression @pattern
+      end
+    end
+  end
 end

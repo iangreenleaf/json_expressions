@@ -31,5 +31,13 @@ module MiniTest
       # Return the matcher
       return exp
     end
+
+    def assert_json_include(exp, act, msg = nil)
+      assert_json_match exp.forgiving!, act, msg
+    end
+
+    def refute_json_include(exp, act, msg = nil)
+      refute_json_match exp.forgiving!, act, msg
+    end
   end
 end
